@@ -35,12 +35,9 @@ app.get("/api/:date",function(req,res){
 
 
 
-  if (Number(rawDate)==rawDate){
-      res.send(`{"unix": "${rawDate}"
-      , "utc":"${dateConverted.toUTCString()}"}`)
-    }
-  else res.send(`{unix: ${Number(date)}
-  , utc:${date.toUTCString()}}`)
+  if (Number(rawDate)==rawDate)
+  {res.json({"unix": Number(rawDate), "utc":dateConverted.toUTCString()})} 
+  else res.json({"unix": Number(date), "utc":date.toUTCString()});
   res.end;
 })
 
@@ -49,6 +46,6 @@ app.get("/api/:date",function(req,res){
 
 
 // listen for requests :)
-var listener = app.listen(env.process.PORT, function () {
+var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
