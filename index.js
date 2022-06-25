@@ -3,8 +3,8 @@
 
 // init project
 var express = require('express');
+var request = require('request');
 var app = express();
-var converter = require('node-unixtimestamp');
 
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 // so that your API is remotely testable by FCC 
@@ -20,6 +20,9 @@ app.get("/", function (req, res) {
 });
 
 
+
+
+
 // your first API endpoint... 
 app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
@@ -28,16 +31,20 @@ app.get("/api/hello", function (req, res) {
 app.get("/api/:date",function(req,res){
   var rawDate = req.params.date;
   var date = new Date(rawDate);
+  const dateConverted = new Date(Number(rawDate));
+
+
 
   if (Number(rawDate)==rawDate){
-    res.send(`{unix: ${rawDate}
-    , utc:${converter.decode_unixtimestamp(rawDate)}}`)
-  }
+      res.send(`{"unix": "${rawDate}"
+      , "utc":"${dateConverted.toUTCString()}"}`)
+    }
   else res.send(`{unix: ${Number(date)}
-  , utc:${date}}`)
+  , utc:${date.toUTCString()}}`)
   res.end;
-
 })
+
+
 
 
 

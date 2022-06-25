@@ -10,7 +10,8 @@
 		"cors": "^2.8.0",
 		"dotenv": "^16.0.1",
 		"express": "^4.12.4",
-		"node-unixtimestamp": "^1.0.0"
+		"node-unixtimestamp": "^1.0.0",
+		"request": "^2.88.2"
 	},
 	"repository": {
 		"type": "git",
